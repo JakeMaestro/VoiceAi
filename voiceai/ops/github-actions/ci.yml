@@ -1,0 +1,18 @@
+
+name: ci
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint Python
+        uses: psf/black@stable
+        with:
+          options: "--check"
+      - name: Build Orchestrator Image
+        run: docker build -t voiceai/orchestrator:ci ./services/orchestrator

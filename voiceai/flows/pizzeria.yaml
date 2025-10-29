@@ -1,0 +1,54 @@
+
+# Example customer workflow (editable)
+customer: "Pizzeria Roma"
+active: true
+business_hours:
+  timezone: "Europe/Vienna"
+  open:
+    - days: [Mon, Tue, Wed, Thu, Fri]
+      from: "10:00"
+      to: "22:00"
+    - days: [Sat, Sun]
+      from: "11:00"
+      to: "23:00"
+
+temporary_notices:
+  - active: false
+    message_tts: "Achtung, heute ist der Kebap leider aus."
+
+menu:
+  prompt_tts: "Willkommen bei Pizzeria Roma. Drücken Sie eins für Bestellung, zwei für Tisch Reservierung, drei für Lieferstatus."
+  options:
+    "1":
+      intent: "order_new"
+      collect:
+        - slot: "items"
+          type: "free_text"
+          prompt_tts: "Was möchten Sie bestellen?"
+        - slot: "name"
+          type: "free_text"
+          prompt_tts: "Wie ist Ihr Name?"
+        - slot: "phone"
+          type: "free_text"
+          prompt_tts: "Bitte Ihre Telefonnummer."
+    "2":
+      intent: "table_reservation"
+      collect:
+        - slot: "date"
+          type: "date"
+          prompt_tts: "Für welches Datum?"
+        - slot: "time"
+          type: "time"
+          prompt_tts: "Um welche Uhrzeit?"
+        - slot: "persons"
+          type: "number"
+          prompt_tts: "Für wie viele Personen?"
+    "3":
+      intent: "delivery_status"
+      collect:
+        - slot: "order_number"
+          type: "free_text"
+          prompt_tts: "Bitte Ihre Bestellnummer."
+fallback_tts: "Entschuldigung, das habe ich nicht verstanden. Bitte wählen Sie erneut."
+closed_tts: "Wir haben derzeit geschlossen. Bitte rufen Sie während der Öffnungszeiten an."
+paused_tts: "Der Dienst ist aktuell pausiert. Bitte versuchen Sie es später erneut."
