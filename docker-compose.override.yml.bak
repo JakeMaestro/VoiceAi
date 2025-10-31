@@ -1,0 +1,23 @@
+services:
+  edge:
+    # sicherstellen, dass Edge NICHT im Host-Netz läuft
+    networks:
+      - default
+    ports:
+      - "5060:5060/udp"          # SIP UDP
+      - "5060:5060/tcp"          # SIP TCP (falls benötigt)
+      - "8088:8088"              # ARI/HTTP
+      - "10000-20000:10000-20000/udp"  # RTP
+    volumes:
+      - /home/azureuser/voiceai-secrets/http.conf:/etc/asterisk/http.conf:ro
+      - /home/azureuser/voiceai-secrets/ari.conf:/etc/asterisk/ari.conf:ro
+      - /home/azureuser/voiceai-secrets/modules.conf:/etc/asterisk/modules.conf:ro
+      - /home/azureuser/voiceai-secrets/logger.conf:/etc/asterisk/logger.conf:ro
+
+  orchestrator:
+    env_file:
+      - ./config/.env
+
+networks:
+  default:
+    driver: bridge
