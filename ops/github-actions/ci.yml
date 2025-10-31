@@ -15,4 +15,4 @@ jobs:
         with:
           options: "--check"
       - name: Build Orchestrator Image
-        run: docker build -t voiceai/orchestrator:ci ./services/orchestrator
+        run: docker build -t m-voice/orchestrator:ci ./services/orchestrator

@@ -4,9 +4,9 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import yaml, os, sqlite3, time, pathlib
 
-app = FastAPI(title="VoiceAI Orchestrator", version="0.1.0")
+app = FastAPI(title="M-Voice Orchestrator", version="0.1.0")
 
-DB_PATH = os.environ.get("DB_PATH", "/app/data/voiceai.db")
+DB_PATH = os.environ.get("DB_PATH", "/app/data/mvoice.db")
 FLOWS_DIR = pathlib.Path("/app/flows")
 
 class Outcome(BaseModel):

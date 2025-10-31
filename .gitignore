@@ -4,4 +4,5 @@ __pycache__/
 *.log
 .DS_Store
 docker-compose.override.yml
-/home/azureuser/voiceai-secrets/
+voiceai-secrets/
+services/orchestrator/.env
